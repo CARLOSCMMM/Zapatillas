@@ -18,10 +18,17 @@ class Controller(val context: Context) {
         inicializarDatos()
     }
 
+    /**
+     * Inicializa la lista de zapatillas obteniéndolas desde el DAO.
+     */
     private fun inicializarDatos() {
         listaZapatillas = DaoZapatilla.miDao.obtenerZapatillas().toMutableList()
     }
 
+    /**
+     * Configura el RecyclerView con el adaptador y el layout manager.
+     * También configura el listener del botón para agregar nuevas zapatillas.
+     */
     fun configurarRecyclerView(binding: ActivityMainBinding) {
         adaptador = AdapterZapatilla(
             listaZapatillas,
@@ -37,6 +44,9 @@ class Controller(val context: Context) {
         }
     }
 
+    /**
+     * Elimina una zapatilla de la lista en la posición especificada y notifica al adaptador.
+     */
     private fun borrarZapatilla(posicion: Int) {
         val zapatilla = listaZapatillas[posicion]
 
@@ -48,11 +58,17 @@ class Controller(val context: Context) {
         Toast.makeText(context, "Eliminada: ${zapatilla.nombre}", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * Muestra un mensaje Toast indicando que la función de editar zapatilla se implementará próximamente.
+     */
     private fun editarZapatilla(posicion: Int) {
         val nombre = listaZapatillas[posicion].nombre
         Toast.makeText(context, "Próximamente: Editar $nombre", Toast.LENGTH_SHORT).show()
     }
-//no hay boton para esta accion pero mas adelante se pondra uno para agregar zapatillas
+
+    /**
+     * Muestra un mensaje Toast indicando que la función de añadir zapatilla se implementará próximamente.
+     */
     private fun agregarZapatilla() {
         Toast.makeText(context, "Próximamente: Añadir Zapatilla", Toast.LENGTH_SHORT).show()
     }
