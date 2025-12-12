@@ -25,3 +25,4 @@ class AdapterZapatilla(
 
     override fun getItemCount(): Int = listaZapatillas.size
 }
+

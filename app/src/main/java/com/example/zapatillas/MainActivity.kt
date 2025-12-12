@@ -23,4 +23,8 @@ class MainActivity : AppCompatActivity() {
         controller = Controller(this)
         controller.configurarRecyclerView(binding)
     }
+
+    fun actualizarRecyclerView() {
+        controller.actualizarRecyclerView()
+    }
 }
