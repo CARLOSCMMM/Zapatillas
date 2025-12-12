@@ -19,8 +19,6 @@ class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
         binding.txtviewNombre.text = zapatilla.nombre
         binding.txtviewMarca.text = zapatilla.marca
         binding.txtviewPrecio.text = "${zapatilla.precio} €"
-        binding.txtviewModelo.text = "Modelo Exclusivo"
-
         Glide.with(itemView.context)
             .load(zapatilla.imagenUrl)
             .centerCrop()

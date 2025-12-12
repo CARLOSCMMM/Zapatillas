@@ -19,5 +19,4 @@ object Repositorio {
     fun editarZapatilla(posicion: Int, nuevaZapatilla: Zapatilla) {
         listaZapatillas[posicion] = nuevaZapatilla
     }
-
 }

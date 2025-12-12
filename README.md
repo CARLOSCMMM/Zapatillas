@@ -11,17 +11,27 @@ Este proyecto es una aplicación de Android que muestra una lista de zapatillas.
 Esta es la actividad principal de la aplicación.
 
 *   `onCreate(savedInstanceState: Bundle?)`: Se llama cuando se crea la actividad. Infla el layout, inicializa el `controller` y configura el `RecyclerView`.
-*   `iniciarApp()`: Inicializa el `controller` y configura el `RecyclerView`.
+*   `iniciarApp()`: Inicializa el `controller` pasándole la propia instancia de la actividad para que el controlador pueda gestionar los resultados de otras actividades y, a continuación, configura el `RecyclerView`.
+*   `actualizarRecyclerView()`: Llama al método `actualizarRecyclerView` del `controller` para refrescar la lista.
 
 ### `Controller.kt`
 
-Esta clase actúa como controlador, gestionando la lógica de la aplicación.
+Esta clase actúa como controlador, gestionando la lógica de la aplicación y la comunicación entre la vista y el modelo.
 
-*   `inicializarDatos()`: Inicializa la lista de zapatillas obteniéndolas del `DaoZapatilla`.
-*   `configurarRecyclerView(binding: ActivityMainBinding)`: Configura el `RecyclerView`, incluyendo el adaptador y el `LayoutManager`. También configura el `ClickListener` para el botón de agregar.
-*   `borrarZapatilla(posicion: Int)`: Elimina una zapatilla de la lista y notifica al adaptador sobre el cambio.
-*   `editarZapatilla(posicion: Int)`: Muestra un `Toast` indicando que la funcionalidad de edición estará disponible próximamente.
-*   `agregarZapatilla()`: Muestra un `Toast` indicando que la funcionalidad de agregar estará disponible próximamente.
+*   `configurarRecyclerView(binding: ActivityMainBinding)`: Configura el `RecyclerView`, incluyendo el adaptador (que obtiene los datos directamente del `Repositorio`) y el `LayoutManager`. También configura el `ClickListener` para el botón de agregar.
+*   `borrarZapatilla(posicion: Int)`: Elimina una zapatilla del `Repositorio` y notifica al adaptador sobre el cambio para que la vista se actualice.
+*   `editarZapatilla(posicion: Int)`: Crea un `Intent` para abrir `AddEditZapatillaActivity` en modo edición, pasando los datos de la zapatilla a editar. Lanza la actividad esperando un resultado.
+*   `agregarZapatilla()`: Crea un `Intent` para abrir `AddEditZapatillaActivity` en modo de creación. Lanza la actividad esperando un resultado.
+*   `addEditLauncher`: Un `ActivityResultLauncher` que se encarga de lanzar `AddEditZapatillaActivity`. Cuando esta actividad termina y devuelve un `RESULT_OK`, se llama al método `actualizarRecyclerView()` para refrescar la lista de zapatillas.
+*   `actualizarRecyclerView()`: Notifica al adaptador (`notifyDataSetChanged()`) que los datos han cambiado para que el `RecyclerView` se vuelva a dibujar con la información actualizada del `Repositorio`.
+
+### `AddEditZapatillaActivity.kt`
+
+Esta actividad permite al usuario agregar una nueva zapatilla o editar una existente.
+
+*   `onCreate(savedInstanceState: Bundle?)`: Al crear la actividad, inicializa las vistas. Comprueba si el `Intent` contiene una posición de zapatilla. Si la contiene, activa el "modo edición" y carga los datos de la zapatilla en los campos de texto. De lo contrario, se mantiene en "modo agregar".
+*   El botón de "Guardar" lee los datos de los `EditText`, crea un objeto `Zapatilla`, y lo añade o actualiza en el `Repositorio` según si se está en modo agregar o editar.
+*   Tras guardar los cambios, llama a `setResult(Activity.RESULT_OK)` para informar a `MainActivity` de que la operación ha sido exitosa. Finalmente, llama a `finish()` para cerrar la actividad y volver a la pantalla principal.
 
 ### `AdapterZapatilla.kt`
 
@@ -45,9 +55,11 @@ Esta clase de acceso a datos (DAO) es responsable de obtener los datos de las za
 
 ### `Repositorio.kt`
 
-Este objeto singleton contiene la lista de zapatillas hardcodeada.
+Este objeto singleton contiene la lista de zapatillas.
 
-*   `listaZapatillas`: Una lista de objetos `Zapatilla` que se utiliza en toda la aplicación.
+*   `listaZapatillas`: Una `MutableList` de objetos `Zapatilla` que se utiliza en toda la aplicación.
+*   `añadirZapatilla(zapatilla: Zapatilla)`: Añade una nueva zapatilla a `listaZapatillas`.
+*   `editarZapatilla(posicion: Int, zapatilla: Zapatilla)`: Actualiza una zapatilla existente en `listaZapatillas` en la posición indicada.
 
 ### `Zapatilla.kt`
 
