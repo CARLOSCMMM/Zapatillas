@@ -12,6 +12,7 @@ import com.example.zapatillas.databinding.ActivityMainBinding
 import com.example.zapatillas.models.Zapatilla
 import com.example.zapatillas.objects_models.Repositorio
 
+
 class Controller(private val mainActivity: MainActivity) {
 
     lateinit var adaptador: AdapterZapatilla
@@ -31,10 +32,6 @@ class Controller(private val mainActivity: MainActivity) {
 
         binding.miRecyclerView.adapter = adaptador
         binding.miRecyclerView.layoutManager = LinearLayoutManager(mainActivity)
-
-        binding.btnAgregar.setOnClickListener {
-            agregarZapatilla()
-        }
     }
 
     private fun borrarZapatilla(posicion: Int) {
@@ -48,6 +45,7 @@ class Controller(private val mainActivity: MainActivity) {
 
     private fun editarZapatilla(posicion: Int) {
         val zapatilla = Repositorio.listaZapatillas[posicion]
+
 
         val intent = Intent(mainActivity, AddEditZapatillaActivity::class.java)
         intent.putExtra("ZAPATILLA_POSICION", posicion)

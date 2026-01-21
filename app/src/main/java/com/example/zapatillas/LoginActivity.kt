@@ -10,6 +10,9 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
+    private val predefinedUsername = "usuario"
+    private val predefinedPassword = "contrasena"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -20,9 +23,13 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.editTextPassword.text.toString()
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                if (username == predefinedUsername && password == predefinedPassword) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                }
             } else {
                 Toast.makeText(this, "Por favor, ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
             }
