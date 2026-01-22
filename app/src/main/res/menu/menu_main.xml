@@ -3,4 +3,12 @@
         android:id="@+id/logout"
         android:title="Cerrar sesión"
         android:icon="@drawable/ic_menu_logout" />
+    <item
+        android:id="@+id/filter"
+        android:title="Filtrar"
+        android:icon="@drawable/ic_filter" />
+    <item
+        android:id="@+id/setting"
+        android:title="Ajustes"
+        android:icon="@drawable/ic_settings" />
 </menu>
