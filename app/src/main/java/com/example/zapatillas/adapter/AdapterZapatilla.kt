@@ -9,7 +9,8 @@ import com.example.zapatillas.models.Zapatilla
 class AdapterZapatilla(
     var listaZapatillas: MutableList<Zapatilla>,
     val onDeleteClick: (Int) -> Unit,
-    val onEditClick: (Int) -> Unit
+    val onEditClick: (Int) -> Unit,
+    val onItemClick: ((Int) -> Unit)? = null
 ) : RecyclerView.Adapter<ViewHolderZapatilla>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderZapatilla {

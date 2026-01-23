@@ -26,23 +26,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- Aquí añades el RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mi_recycler_view"
+                android:id="@+id/viewZapatillas"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:padding="8dp"
-                android:paddingBottom="80dp" />
+                android:layout_height="match_parent" />
         </FrameLayout>
 
     </LinearLayout>
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_main">
     </com.google.android.material.navigation.NavigationView>
 

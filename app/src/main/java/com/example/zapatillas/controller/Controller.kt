@@ -30,8 +30,8 @@ class Controller(private val mainActivity: MainActivity) {
             { posicion -> editarZapatilla(posicion) }
         )
 
-        binding.miRecyclerView.adapter = adaptador
-        binding.miRecyclerView.layoutManager = LinearLayoutManager(mainActivity)
+        binding.viewZapatillas.adapter = adaptador
+        binding.viewZapatillas.layoutManager = LinearLayoutManager(mainActivity)
     }
 
     private fun borrarZapatilla(posicion: Int) {

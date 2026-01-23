@@ -2,6 +2,7 @@ package com.example.zapatillas
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -11,6 +12,7 @@ import com.example.zapatillas.R
 import com.google.android.material.navigation.NavigationView
 import com.example.zapatillas.databinding.ActivityMainBinding
 import com.example.zapatillas.controller.Controller
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,13 +23,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navigationView: NavigationView = findViewById(R.id.navigation_view)
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+
+        val headerView = navigationView.getHeaderView(0)
+        val textViewUserName = headerView.findViewById<TextView>(R.id.textViewUserName)
+        textViewUserName.text = "Carlos"
 
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -47,7 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         iniciarApp()
     }
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_options, menu)
+        return true
+    }
     private fun iniciarApp() {
         controller = Controller(this)
         controller.configurarRecyclerView(binding)
@@ -58,10 +66,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        if (item.itemId == android.R.id.home) {
-            drawerLayout.openDrawer(GravityCompat.START)
-            return true
+        when (item.itemId) {
+            R.id.menu_logout -> {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+                return true
+            }
+            R.id.menu_settings -> {
+                // Settings functionality will be added later
+                return true
+            }
+            R.id.menu_search -> {
+                // Search functionality will be added later
+                return true
+            }
+            android.R.id.home -> {
+                val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+                drawerLayout.openDrawer(GravityCompat.START)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

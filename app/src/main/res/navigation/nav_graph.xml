@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nav-graph xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/zapatillaListFragment">
+
+    <fragment
+        android:id="@+id/zapatillaListFragment"
+        android:name="com.example.zapatillas.ZapatillaListFragment"
+        android:label="Zapatillas"
+        tools:layout="@layout/fragment_zapatilla_list">
+        <action
+            android:id="@+id/action_zapatillaListFragment_to_zapatillaDetailFragment"
+            app:destination="@id/zapatillaDetailFragment">
+            <argument
+                android:name="zapatillaId"
+                app:argType="integer" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/zapatillaDetailFragment"
+        android:name="com.example.zapatillas.ZapatillaDetailFragment"
+        android:label="Detalle Zapatilla"
+        tools:layout="@layout/fragment_zapatilla_detail">
+        <argument
+            android:name="zapatillaId"
+            app:argType="integer"/>
+    </fragment>
+</nav-graph>
