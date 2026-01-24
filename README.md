@@ -75,3 +75,32 @@ Esta es la clase de modelo de datos para una zapatilla.
 Este archivo de AndroidManifest contiene la configuración de metadatos de la aplicación.
 
 * `<uses-permission android:name="android.permission.INTERNET" />` es para dar permisos para renderizar las imagenes de las Url.
+
+### `ZapatillaListFragment.kt`
+
+Este fragmento muestra la lista de zapatillas en un `RecyclerView`.
+
+*   `onCreateView()`: Infla el layout del fragmento.
+*   `onViewCreated()`: Configura el `RecyclerView` una vez que la vista ha sido creada.
+*   `setupRecyclerView()`: Inicializa el `AdapterZapatilla` con la lista de zapatillas del `Repositorio` y lo asigna al `RecyclerView`. También configura los click listeners para eliminar, editar y ver los detalles de una zapatilla.
+*   `deleteZapatilla()`: Elimina una zapatilla de la lista y notifica al adaptador para que actualice la vista.
+*   `editZapatilla()`: (Función de edición no implementada) Muestra un `Toast` para indicar que la zapatilla seleccionada se va a editar.
+*   `showDetails()`: Navega al fragmento de detalles de la zapatilla (`ZapatillaDetailFragment`) cuando se hace clic en un elemento de la lista.
+*   `agregarZapatilla()`: (Función de agregar no implementada)
+*   `onDestroyView()`: Limpia la referencia al `binding` cuando la vista del fragmento se destruye.
+
+### `ZapatillaDetailActivity.kt`
+
+Esta actividad muestra los detalles de una zapatilla.
+
+*   `onCreate()`: Al crear la actividad, se obtiene la posición de la zapatilla del `Intent` y se muestran sus detalles (nombre, marca, precio e imagen).
+*   `buttonVolver`: Se ha añadido un listener al botón "Volver" para que, al pulsarlo, se cierre la actividad y se vuelva a la pantalla anterior.
+
+### `LoginActivity.kt`
+
+Esta actividad gestiona el inicio de sesión del usuario.
+
+*   `onCreate()`: Configura los listeners de los botones de la pantalla de inicio de sesión.
+*   `buttonLogin`: Comprueba si el nombre de usuario y la contraseña introducidos son correctos. Si es así, inicia la `MainActivity`. Si no, muestra un mensaje de error.
+*   `buttonRegister`: Muestra un `Toast` indicando que la función de registro no está implementada.
+*   `buttonForgotPassword`: Muestra un `Toast` indicando que la función de recuperación de contraseña no está implementada.

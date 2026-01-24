@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.zapatillas.LoginActivity
-import com.example.zapatillas.R
-import com.google.android.material.navigation.NavigationView
-import com.example.zapatillas.databinding.ActivityMainBinding
 import com.example.zapatillas.controller.Controller
-import android.widget.TextView
+import com.example.zapatillas.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,7 +50,17 @@ class MainActivity : AppCompatActivity() {
 
 
         iniciarApp()
+
+        binding.btnAgregar.setOnClickListener {
+            agregarZapatilla()
+        }
     }
+
+    private fun agregarZapatilla() {
+        val intent = Intent(this, AddEditZapatillaActivity::class.java)
+        startActivity(intent)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_options, menu)
         return true

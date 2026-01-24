@@ -25,5 +25,9 @@ class ZapatillaDetailActivity : AppCompatActivity() {
                 .load(zapatilla.imagenUrl)
                 .into(binding.ivZapatillaDetail)
         }
+
+        binding.buttonVolver.setOnClickListener {
+            finish()
+        }
     }
 }
