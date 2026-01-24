@@ -26,6 +26,10 @@
         <activity
             android:name=".AddEditZapatillaActivity"
             android:exported="false" />
+            
+        <activity
+            android:name=".ZapatillaDetailActivity"
+            android:exported="false" />
 
         <activity
             android:name="com.example.zapatillas.MainActivity"

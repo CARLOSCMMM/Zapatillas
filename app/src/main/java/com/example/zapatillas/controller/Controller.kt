@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zapatillas.AddEditZapatillaActivity
 import com.example.zapatillas.MainActivity
+import com.example.zapatillas.ZapatillaDetailActivity
 import com.example.zapatillas.adapter.AdapterZapatilla
 import com.example.zapatillas.databinding.ActivityMainBinding
 import com.example.zapatillas.models.Zapatilla
@@ -27,7 +28,8 @@ class Controller(private val mainActivity: MainActivity) {
         adaptador = AdapterZapatilla(
             Repositorio.listaZapatillas,
             { posicion -> borrarZapatilla(posicion) },
-            { posicion -> editarZapatilla(posicion) }
+            { posicion -> editarZapatilla(posicion) },
+            { posicion -> verDetallesZapatilla(posicion) }
         )
 
         binding.viewZapatillas.adapter = adaptador
@@ -54,6 +56,13 @@ class Controller(private val mainActivity: MainActivity) {
         intent.putExtra("ZAPATILLA_PRECIO", zapatilla.precio)
         intent.putExtra("ZAPATILLA_IMAGEN_URL", zapatilla.imagenUrl)
 
+        addEditLauncher.launch(intent)
+    }
+    
+    private fun verDetallesZapatilla(posicion: Int) {
+        val zapatilla = Repositorio.listaZapatillas[posicion]
+        val intent = Intent(mainActivity, ZapatillaDetailActivity::class.java)
+        intent.putExtra("ZAPATILLA_POSICION", posicion)
         addEditLauncher.launch(intent)
     }
 

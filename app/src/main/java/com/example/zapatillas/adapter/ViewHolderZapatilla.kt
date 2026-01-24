@@ -14,7 +14,8 @@ class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
         zapatilla: Zapatilla,
         position: Int,
         onDeleteClick: (Int) -> Unit,
-        onEditClick: (Int) -> Unit
+        onEditClick: (Int) -> Unit,
+        onItemClick: ((Int) -> Unit)?
     ) {
         binding.txtviewNombre.text = zapatilla.nombre
         binding.txtviewMarca.text = zapatilla.marca
@@ -30,6 +31,10 @@ class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
 
         binding.btnEdit.setOnClickListener {
             onEditClick(position)
+        }
+        
+        itemView.setOnClickListener {
+            onItemClick?.invoke(adapterPosition)
         }
     }
 }

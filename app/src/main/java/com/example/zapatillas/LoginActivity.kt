@@ -10,8 +10,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
-    private val predefinedUsername = "usuario"
-    private val predefinedPassword = "contrasena"
+    private val predefinedUsername = "carlos"
+    private val predefinedPassword = "1234"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
