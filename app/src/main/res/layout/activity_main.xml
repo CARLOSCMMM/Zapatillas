@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentacion.ui.main.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- Aquí añades el RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/viewZapatillas"
                 android:layout_width="match_parent"

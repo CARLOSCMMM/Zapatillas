@@ -1,11 +1,13 @@
-package com.example.zapatillas
+package com.example.zapatillas.presentacion.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.zapatillas.databinding.ActivityZapatillaDetailBinding
-import com.example.zapatillas.objects_models.Repositorio
+import com.example.zapatillas.domain.model.Zapatilla
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ZapatillaDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityZapatillaDetailBinding
@@ -15,9 +17,8 @@ class ZapatillaDetailActivity : AppCompatActivity() {
         binding = ActivityZapatillaDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val position = intent.getIntExtra("ZAPATILLA_POSICION", -1)
-        if (position != -1) {
-            val zapatilla = Repositorio.listaZapatillas[position]
+        val zapatilla = intent.getParcelableExtra<Zapatilla>("ZAPATILLA")
+        if (zapatilla != null) {
             binding.tvNombreDetail.text = zapatilla.nombre
             binding.tvMarcaDetail.text = zapatilla.marca
             binding.tvPrecioDetail.text = "${zapatilla.precio} €"

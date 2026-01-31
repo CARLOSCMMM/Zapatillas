@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".ZapatillasApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +16,7 @@
         android:theme="@style/Theme.Zapatillas">
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".presentacion.ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +25,15 @@
         </activity>
 
         <activity
-            android:name=".AddEditZapatillaActivity"
+            android:name=".presentacion.ui.addEdit.AddEditZapatillaActivity"
             android:exported="false" />
             
         <activity
-            android:name=".ZapatillaDetailActivity"
+            android:name=".presentacion.ui.detail.ZapatillaDetailActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.example.zapatillas.MainActivity"
+            android:name="com.example.zapatillas.presentacion.ui.main.MainActivity"
             android:exported="false">
         </activity>
 

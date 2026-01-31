@@ -1,10 +1,10 @@
-package com.example.zapatillas.adapter
+package com.example.zapatillas.presentacion.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.zapatillas.databinding.ItemZapatillaBinding
-import com.example.zapatillas.models.Zapatilla
+import com.example.zapatillas.domain.model.Zapatilla
 
 class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
 

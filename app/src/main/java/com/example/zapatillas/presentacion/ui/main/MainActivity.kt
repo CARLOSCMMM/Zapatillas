@@ -1,22 +1,38 @@
-package com.example.zapatillas
+package com.example.zapatillas.presentacion.ui.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.zapatillas.controller.Controller
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.zapatillas.presentacion.adapter.AdapterZapatilla
+import com.example.zapatillas.presentacion.ui.addEdit.AddEditZapatillaActivity
+import com.example.zapatillas.presentacion.ui.detail.ZapatillaDetailActivity
+import com.example.zapatillas.R
 import com.example.zapatillas.databinding.ActivityMainBinding
+import com.example.zapatillas.presentacion.ui.login.LoginActivity
+import com.example.zapatillas.presentacion.viewmodel.ZapatillaViewModel
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var controller: Controller
+    private val viewModel: ZapatillaViewModel by viewModels()
+    private lateinit var adapter: AdapterZapatilla
+
+    private val addEditLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            viewModel.refresh()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,30 +64,58 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        setupRecyclerView()
 
-        iniciarApp()
+        viewModel.zapatillas.observe(this) { list ->
+            adapter.updateList(list)
+        }
 
         binding.btnAgregar.setOnClickListener {
             agregarZapatilla()
         }
     }
 
+    private fun setupRecyclerView() {
+        adapter = AdapterZapatilla(
+            emptyList(),
+            { position -> deleteZapatilla(position) },
+            { position -> editZapatilla(position) },
+            { position -> showDetails(position) }
+        )
+
+        binding.viewZapatillas.adapter = adapter
+        binding.viewZapatillas.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun deleteZapatilla(position: Int) {
+        val zapatilla = adapter.listaZapatillas[position]
+        viewModel.deleteZapatilla(zapatilla)
+    }
+
+    private fun editZapatilla(position: Int) {
+        val zapatilla = adapter.listaZapatillas[position]
+        val intent = Intent(this, AddEditZapatillaActivity::class.java).apply {
+            putExtra("ZAPATILLA", zapatilla)
+        }
+        addEditLauncher.launch(intent)
+    }
+
+    private fun showDetails(position: Int) {
+        val zapatilla = adapter.listaZapatillas[position]
+        val intent = Intent(this, ZapatillaDetailActivity::class.java).apply {
+            putExtra("ZAPATILLA", zapatilla)
+        }
+        startActivity(intent)
+    }
+
     private fun agregarZapatilla() {
         val intent = Intent(this, AddEditZapatillaActivity::class.java)
-        startActivity(intent)
+        addEditLauncher.launch(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_options, menu)
         return true
-    }
-    private fun iniciarApp() {
-        controller = Controller(this)
-        controller.configurarRecyclerView(binding)
-    }
-
-    fun actualizarRecyclerView() {
-        controller.actualizarRecyclerView()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -83,11 +127,11 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.menu_settings -> {
-                // Settings functionality will be added later
+                // añadimos la funcionalidad mas tarde
                 return true
             }
             R.id.menu_search -> {
-                // Search functionality will be added later
+                // añadimos la funcionalidad mas tarde
                 return true
             }
             android.R.id.home -> {

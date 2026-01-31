@@ -1,17 +1,22 @@
-package com.example.zapatillas.adapter
+package com.example.zapatillas.presentacion.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zapatillas.R
-import com.example.zapatillas.models.Zapatilla
+import com.example.zapatillas.domain.model.Zapatilla
 
 class AdapterZapatilla(
-    var listaZapatillas: MutableList<Zapatilla>,
+    var listaZapatillas: List<Zapatilla>,
     val onDeleteClick: (Int) -> Unit,
     val onEditClick: (Int) -> Unit,
     val onItemClick: ((Int) -> Unit)? = null
 ) : RecyclerView.Adapter<ViewHolderZapatilla>() {
+
+    fun updateList(newList: List<Zapatilla>) {
+        listaZapatillas = newList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderZapatilla {
         val layoutInflater = LayoutInflater.from(parent.context)

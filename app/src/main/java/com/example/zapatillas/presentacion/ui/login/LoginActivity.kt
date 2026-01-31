@@ -1,9 +1,10 @@
-package com.example.zapatillas
+package com.example.zapatillas.presentacion.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.zapatillas.presentacion.ui.main.MainActivity
 import com.example.zapatillas.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
