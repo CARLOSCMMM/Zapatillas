@@ -2,8 +2,11 @@ package com.example.zapatillas.data.repositorio
 
 import com.example.zapatillas.domain.model.Zapatilla
 import com.example.zapatillas.domain.repositorio.Repositorio
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepositorioImpl : Repositorio {
+@Singleton
+class RepositorioImpl @Inject constructor() : Repositorio {
 
     private val listaZapatillas: MutableList<Zapatilla> = mutableListOf(
         Zapatilla(
@@ -72,13 +75,13 @@ class RepositorioImpl : Repositorio {
     }
 
     override fun updateZapatilla(old: Zapatilla, new: Zapatilla) {
-        val index = listaZapatillas.indexOf(old)
+        val index = listaZapatillas.indexOfFirst { it.id == old.id }
         if (index != -1) {
-            listaZapatillas[index] = new
+            listaZapatillas[index] = new.copy(id = old.id)
         }
     }
 
     override fun deleteZapatilla(zapatilla: Zapatilla) {
-        listaZapatillas.remove(zapatilla)
+        listaZapatillas.removeAll { it.id == zapatilla.id }
     }
 }

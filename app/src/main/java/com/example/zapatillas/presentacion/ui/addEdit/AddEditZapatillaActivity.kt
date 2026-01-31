@@ -60,7 +60,7 @@ class AddEditZapatillaActivity : AppCompatActivity() {
             val nuevaZapatilla = if (isEditMode) {
                 Zapatilla(oldZapatilla!!.id, nombre, marca, precio, urlImagen)
             } else {
-                Zapatilla(0, nombre, marca, precio, urlImagen) // id will be set in repo
+                Zapatilla(0, nombre, marca, precio, urlImagen)
             }
 
             if (isEditMode) {

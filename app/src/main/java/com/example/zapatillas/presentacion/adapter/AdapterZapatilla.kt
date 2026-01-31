@@ -26,7 +26,7 @@ class AdapterZapatilla(
 
     override fun onBindViewHolder(holder: ViewHolderZapatilla, position: Int) {
         val item = listaZapatillas[position]
-        holder.renderize(item, position, onDeleteClick, onEditClick, onItemClick)
+        holder.renderize(item, onDeleteClick, onEditClick, onItemClick)
     }
 
     override fun getItemCount(): Int = listaZapatillas.size

@@ -12,7 +12,6 @@ class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
 
     fun renderize(
         zapatilla: Zapatilla,
-        position: Int,
         onDeleteClick: (Int) -> Unit,
         onEditClick: (Int) -> Unit,
         onItemClick: ((Int) -> Unit)?
@@ -26,11 +25,11 @@ class ViewHolderZapatilla(view: View) : RecyclerView.ViewHolder(view) {
             .into(binding.ivZapatilla)
 
         binding.btnDelete.setOnClickListener {
-            onDeleteClick(position)
+            onDeleteClick(adapterPosition)
         }
 
         binding.btnEdit.setOnClickListener {
-            onEditClick(position)
+            onEditClick(adapterPosition)
         }
         
         itemView.setOnClickListener {
