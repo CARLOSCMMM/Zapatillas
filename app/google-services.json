@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "138518034743",
+    "project_id": "zapatos-e6b80",
+    "storage_bucket": "zapatos-e6b80.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:138518034743:android:ec227c2fe59fb4051202b2",
+        "android_client_info": {
+          "package_name": "com.example.zapatillas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkgeogIafqjTABZU6vpqgKkJkS9m0U3kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

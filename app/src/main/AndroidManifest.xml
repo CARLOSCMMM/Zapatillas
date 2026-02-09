@@ -25,6 +25,10 @@
         </activity>
 
         <activity
+            android:name=".presentacion.ui.login.RegisterActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".presentacion.ui.addEdit.AddEditZapatillaActivity"
             android:exported="false" />
             

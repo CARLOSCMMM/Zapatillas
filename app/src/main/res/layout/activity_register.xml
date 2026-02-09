@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentacion.ui.login.LoginActivity">
+    tools:context=".presentacion.ui.login.RegisterActivity">
 
     <EditText
-        android:id="@+id/editTextUser"
+        android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -30,42 +30,42 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUser" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
-    <Button
-        android:id="@+id/buttonLogin"
+    <EditText
+        android:id="@+id/editTextRepeatPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Iniciar sesión"
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
     <Button
         android:id="@+id/buttonRegister"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:text="Registrarse"
-        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword" />
 
     <Button
-        android:id="@+id/buttonForgotPassword"
+        android:id="@+id/buttonBackToLogin"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="Recuperar contraseña"
+        android:text="Ya tengo cuenta"
         android:textColor="@android:color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
